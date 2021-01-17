@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Boss.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 304 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 496, 16 )
+
+[node name="World" type="Node2D"]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Walls"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/Wall"]
+polygon = PoolVector2Array( -209, 0, 24, 0, 24, 600, -210, 600 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall"]
+position = Vector2( 8, 304 )
+shape = SubResource( 1 )
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1000, 0 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/Wall2"]
+polygon = PoolVector2Array( 0, 0, 406, 0, 405, 600, 0, 600 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+position = Vector2( 16, 304 )
+shape = SubResource( 1 )
+
+[node name="Wall3" type="StaticBody2D" parent="Walls"]
+position = Vector2( 400, -288 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/Wall3"]
+polygon = PoolVector2Array( -376, 288, 600, 288, 600, 312, -376, 312 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
+position = Vector2( 104, 296 )
+shape = SubResource( 2 )
+
+[node name="Wall4" type="StaticBody2D" parent="Walls"]
+position = Vector2( 400, 288 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/Wall4"]
+polygon = PoolVector2Array( -376, 288, 600, 288, 600, 312, -376, 312 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4"]
+position = Vector2( 104, 304 )
+shape = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256, 176 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 511, 299 )
+current = true
+
+[node name="Boss" parent="." instance=ExtResource( 1 )]
+position = Vector2( 509, 305 )
