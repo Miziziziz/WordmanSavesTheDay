@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chiptune-police loop.ogg-8586d0abb20306c7f92480f71796b907.oggstr"
+
+[deps]
+
+source_file="res://music/chiptune-police loop.ogg"
+dest_files=[ "res://.import/chiptune-police loop.ogg-8586d0abb20306c7f92480f71796b907.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

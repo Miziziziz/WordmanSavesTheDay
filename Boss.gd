@@ -20,10 +20,14 @@ func damage(amnt: int):
 	if dead:
 		return
 	health -= amnt
+	
 	if health <= 0:
 		dead = true
 		get_tree().call_group("letters", "destroy")
 		$Sprite/AnimationPlayer.play("die")
+		$DieSound.play()
+	else:
+		$HurtSound.play()
 	health_bar.value = health
 
 func _physics_process(delta):
@@ -46,3 +50,6 @@ func spawn_bullet(dir: Vector2):
 	letter_bullet_inst.move_vec = dir
 	letter_bullet_inst.global_position = global_position
 	get_tree().get_root().add_child(letter_bullet_inst)
+
+func load_next_level():
+	LevelManager.load_next_level()

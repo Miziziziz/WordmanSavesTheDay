@@ -14,9 +14,12 @@ var move_speed_when_selected = 35
 var move_vec = Vector2.RIGHT
 var destroyed = false
 
+onready var label = $Graphics/Label
+onready var outline = $Graphics/Outline
+
 func _ready():
 	letter = letters[randi() % letters.length()]
-	$Label.text = letter
+	label.text = letter
 	rotation_degrees = rand_range(-max_rotation, max_rotation)
 
 func _physics_process(delta):
@@ -34,19 +37,24 @@ func select():
 	if selected:
 		return false
 	selected = true
-	$Outline.color = Color.green
-	$Label.modulate = Color.green
+	outline.color = Color.green
+	label.modulate = Color.green
 	return true
 
 func unselect():
 	if !selected:
 		return false
 	selected = false
-	$Outline.color = Color.white
-	$Label.modulate = Color.white
+	outline.color = Color.white
+	label.modulate = Color.white
 	return true
 
 func destroy():
 	destroyed = true
-	queue_free()
+	#queue_free()
+	$Graphics.hide()
+	$CollisionShape2D.disabled = true
+	$CPUParticles2D.restart()
+	$DeleteTimer.start()
+	set_physics_process(false)
 	emit_signal("destroyed", self)

@@ -152,6 +152,9 @@ func hurt():
 		health = 0
 		restart_button.show()
 		anim_player.play("die")
+		$DieSound.play()
+	else:
+		$HurtSound.play()
 	var ind = 0
 	for c in $CanvasLayer/HealthDisplay.get_children():
 		c.hide()
